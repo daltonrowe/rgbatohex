@@ -3,6 +3,7 @@ module.exports = {
     title: `RGBA to HEX Converter`,
     description: `Gatsby site to convert between rgba and hex color codes, since I seem to do this a lot in frontend work`,
     author: `@daltonrowe`,
+    github: `https://github.com/daltonrowe/rgbatohex`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
