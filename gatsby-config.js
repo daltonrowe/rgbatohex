@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `RGBA to HEX Converter`,
+    description: `Gatsby site to convert between rgba and hex color codes, since I seem to do this a lot in frontend work`,
+    author: `@daltonrowe`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
