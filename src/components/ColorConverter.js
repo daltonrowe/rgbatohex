@@ -1,28 +1,43 @@
 import React from "react"
-import HexInput from "./HexInput"
-import RgbaInput from "./RgbaInput"
+import ColorInput from "./ColorInput"
+import ColorOutput from "./ColorOutput"
 
 class ColorCoverter extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      intialBgColor: "333333",
-      hexValue: "123456",
-      rgbaString: "rgba(12,34,56,0.5)",
-      rgbaError: null,
-      hexError: null,
-      includeHash: false,
+      initialInputColorType: {
+        type: "rgba",
+        value: [18, 52, 85, 1],
+      },
+      initialOutputColorType: {
+        type: "hex",
+        value: [12, 34, 56],
+      },
+      bgColorType: {
+        type: "hex",
+        value: ["FF", "FF", "FF"],
+      },
+      outputColorType: null,
+      errors: null,
+      includeHash: true,
     }
   }
 
   parseRgba = string => {
-    const rgba = {
-      r: 0,
-      g: 0,
-      b: 0,
-      a: 0,
+    let colorType = {
+      type: "rgba",
+      value: [18, 52, 85, 1],
     }
-    return rgba
+    return colorType
+  }
+
+  parseHex = string => {
+    let colorType = {
+      type: "hex",
+      value: ["12", "34", "56"],
+    }
+    return colorType
   }
 
   validateRgbaString = string => {
@@ -31,88 +46,102 @@ class ColorCoverter extends React.Component {
     return valid
   }
 
+  returnColorType = string => {
+    if (this.validateRgbaString(string)) {
+      return this.parseRgba(string)
+    } else if (this.validateHexString(string)) {
+      return this.parseHex(string)
+    } else {
+      return false
+    }
+  }
+
   validateHexString = string => {
     console.log("validate hex")
     const valid = true
     return valid
   }
 
-  outputToHex = hex => {
-    console.log("output to hex")
-  }
+  convertColorType = (colorType, bgColorType) => {
+    switch (colorType.type) {
+      case "rgba":
+        break
 
-  outputToRgba = rgba => {
-    console.log("remove bg color")
-    console.log("output to rgba")
-  }
+      case "hex":
+        break
 
-  convertRgbaToHex = (rgba, bg) => {
-    console.log("convert rgba")
-    console.log("mix with bg color")
-    const hex = "000000"
-    return hex
-  }
-
-  convertHexToRgba = (hex, bg) => {
-    console.log("convert hex")
-    const rgba = {
-      r: 0,
-      g: 0,
-      b: 0,
-      a: 0,
+      default:
+        break
     }
-    return rgba
   }
 
-  handleRgbaChange = events => {
-    const inputValue = events.target.value
-    let rgbaValue = null
-    let hexValue = null
+  colorTypeToOutputString = colorType => {
+    let outputString
 
-    if (this.validateRgbaString(inputValue)) {
-      rgbaValue = this.parseRgba(inputValue)
-      hexValue = this.convertRgbaToHex(rgbaValue, this.state.bgColor)
-      this.outputToHex(hexValue)
+    if (!colorType) {
+      return (outputString = `No color type found`)
+    }
+
+    switch (colorType.type) {
+      case "rgba":
+        outputString = `rgba(${colorType.value[0]},${colorType.value[1]},${
+          colorType.value[2]
+        },${colorType.value[3]})`
+        break
+
+      case "hex":
+        outputString = `#${colorType.value[0]}${colorType.value[1]}${
+          colorType.value[2]
+        }`
+        break
+
+      default:
+        outputString = `How'd ya get here?`
+        break
+    }
+
+    return outputString
+  }
+
+  handleChange = events => {
+    const inputValue = events.target.value
+    const colorType = this.returnColorType(inputValue)
+    if (colorType) {
+      this.setState({
+        outputColorType: this.convertColorType(
+          colorType,
+          this.state.bgColorType
+        ),
+        errors: false,
+      })
     } else {
       this.setState({
-        rgbaError: `not seeing an rgba() value here`,
+        errors: `No color value found :/`,
       })
     }
   }
 
-  handleHexChange = events => {
-    const inputValue = events.target.value
-    let hexValue = null
-    let rgbaValue = null
-
-    if (this.validateRgbaString(inputValue)) {
-      hexValue = this.parseHex(inputValue)
-      rgbaValue = this.convertHexToRgba(hexValue)
-      this.outputToRgba(rgbaValue)
-    } else {
-      this.setState({
-        hexError: `dangit can't read hex value`,
-      })
-    }
-  }
+  handleBgChange = events => {}
 
   render() {
     return (
       <section className="color-converter">
-        <div className="color-converter__rgba_wrapper">
-          <RgbaInput
-            rgbaString={this.state.rgbaString}
-            handleChange={this.handleRgbaChange}
-            error={this.state.rgbaError}
-          />
-        </div>
-        <div className="color-converter__hex_wrapper">
-          <HexInput
-            hexString={this.state.hexString}
-            handleChange={this.handleHexChange}
-            error={this.state.hexError}
-          />
-        </div>
+        <ColorInput
+          initialValue={this.colorTypeToOutputString(
+            this.state.initialInputColorType
+          )}
+          bgColorValue={this.colorTypeToOutputString(this.state.bgColorType)}
+          handleChange={this.handleChange}
+          handleBgChange={this.handleBgChange}
+        />
+
+        <ColorOutput
+          initialValue={this.colorTypeToOutputString(
+            this.state.initialOutputColorType
+          )}
+          outputValue={this.colorTypeToOutputString(this.state.outputColorType)}
+          errors={this.state.errors}
+        />
       </section>
     )
   }
