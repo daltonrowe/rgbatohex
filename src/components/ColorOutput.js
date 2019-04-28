@@ -1,20 +1,18 @@
 import React from "react"
 
-const determineOutputOrError = (outputValue, errors) => {
+const determineOutputOrError = (initialValue, outputValue, errors) => {
   if (errors) {
     return errors
-  } else {
+  } else if (outputValue) {
     return outputValue
+  } else {
+    return initialValue
   }
 }
 
-const ColorOutput = ({ outputValue, errors }) => (
+const ColorOutput = ({ initialValue, outputValue, errors }) => (
   <div className="color-converter__output_wrapper">
-    <input
-      type="text"
-      value={determineOutputOrError(outputValue, errors)}
-      readOnly
-    />
+    {determineOutputOrError(initialValue, outputValue, errors)}
   </div>
 )
 

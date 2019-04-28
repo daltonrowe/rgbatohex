@@ -12,7 +12,7 @@ class ColorCoverter extends React.Component {
       },
       initialOutputColorType: {
         type: "hex",
-        value: [12, 34, 56],
+        value: ["12", "34", "56"],
       },
       bgColorType: {
         type: "hex",
@@ -41,7 +41,13 @@ class ColorCoverter extends React.Component {
   }
 
   validateRgbaString = string => {
-    console.log("validate rgba")
+    console.log(string)
+
+    const valid = true
+    return valid
+  }
+
+  validateHexString = string => {
     const valid = true
     return valid
   }
@@ -56,56 +62,62 @@ class ColorCoverter extends React.Component {
     }
   }
 
-  validateHexString = string => {
-    console.log("validate hex")
-    const valid = true
-    return valid
+  checkColorType = colorType => {
+    if (!colorType || !("type" in colorType)) {
+      return false
+    }
+    return true
   }
 
   convertColorType = (colorType, bgColorType) => {
+    if (!this.checkColorType(colorType)) {
+      return false
+    }
+
     switch (colorType.type) {
       case "rgba":
-        break
+        return {
+          type: "hex",
+          value: [12, 34, 56],
+        }
 
       case "hex":
-        break
+        return {
+          type: "rgba",
+          value: [12, 34, 56, 1],
+        }
 
       default:
-        break
+        return false
     }
   }
 
   colorTypeToOutputString = colorType => {
-    let outputString
-
-    if (!colorType) {
-      return (outputString = `No color type found`)
+    if (!this.checkColorType(colorType)) {
+      return false
     }
 
     switch (colorType.type) {
       case "rgba":
-        outputString = `rgba(${colorType.value[0]},${colorType.value[1]},${
+        return `rgba(${colorType.value[0]},${colorType.value[1]},${
           colorType.value[2]
         },${colorType.value[3]})`
-        break
 
       case "hex":
-        outputString = `#${colorType.value[0]}${colorType.value[1]}${
+        return `#${colorType.value[0]}${colorType.value[1]}${
           colorType.value[2]
         }`
-        break
 
       default:
-        outputString = `How'd ya get here?`
-        break
+        return false
     }
-
-    return outputString
   }
 
   handleChange = events => {
     const inputValue = events.target.value
     const colorType = this.returnColorType(inputValue)
+    console.log(colorType)
+
     if (colorType) {
       this.setState({
         outputColorType: this.convertColorType(
