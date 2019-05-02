@@ -10,6 +10,7 @@ module.exports = {
     github: `https://github.com/daltonrowe/rgbatohex`,
   },
   plugins: [
+    `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,

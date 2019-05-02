@@ -2,7 +2,7 @@ import React from "react"
 import ColorInput from "./ColorInput"
 import ColorOutput from "./ColorOutput"
 
-import "../styles/components/ColorConverter.css"
+import "../styles/components/ColorConverter.scss"
 
 // https://github.com/misund/hex-to-rgba
 const rgbaRegex = /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/
