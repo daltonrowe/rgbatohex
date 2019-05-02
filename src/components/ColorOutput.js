@@ -1,4 +1,5 @@
 import React from "react"
+import "../styles/components/ColorInputOutput.css"
 
 const determineOutputOrError = (initialValue, outputValue, errors) => {
   if (errors) {
