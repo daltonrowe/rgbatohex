@@ -14,7 +14,7 @@ class ColorCoverter extends React.Component {
     this.state = {
       initialInputColorType: {
         type: "rgba",
-        value: [18, 52, 85, 1],
+        value: [18, 52, 86, 1],
       },
       initialOutputColorType: {
         type: "hex",
@@ -33,7 +33,7 @@ class ColorCoverter extends React.Component {
   parseRgba = string => {
     let colorType = {
       type: "rgba",
-      value: [18, 52, 85, 1],
+      value: [0, 0, 0, 1],
     }
 
     let tempString
@@ -42,9 +42,9 @@ class ColorCoverter extends React.Component {
     tempString = tempString[0]
     let tempArray = tempString.split(",")
 
-    for (let i = 0; i < tempArray.length; i++) {
+    for (let i = 0; i <= 2; i++) {
       const value = tempArray[i]
-      colorType[i] = value
+      colorType.value[i] = parseInt(value)
     }
 
     return colorType
@@ -53,7 +53,7 @@ class ColorCoverter extends React.Component {
   parseHex = string => {
     let colorType = {
       type: "hex",
-      value: ["12", "34", "56"],
+      value: ["00", "00", "00"],
     }
 
     if (string.length === 3) {
@@ -61,9 +61,9 @@ class ColorCoverter extends React.Component {
         string[0] + string[0] + string[1] + string[1] + string[2] + string[2]
     }
 
-    colorType[0] = string.slice(0, 2)
-    colorType[1] = string.slice(2, 4)
-    colorType[2] = string.slice(4, 6)
+    colorType.value[0] = parseInt(string.slice(0, 2))
+    colorType.value[1] = parseInt(string.slice(2, 4))
+    colorType.value[2] = parseInt(string.slice(4, 6))
     return colorType
   }
 
@@ -111,18 +111,38 @@ class ColorCoverter extends React.Component {
       return false
     }
 
+    let newColorType, r, g, b
+
     switch (colorType.type) {
+      // is rgba, return hex
       case "rgba":
-        return {
+        r = colorType.value[0].toString(16)
+        g = colorType.value[1].toString(16)
+        b = colorType.value[2].toString(16)
+
+        if (r.length === 1) r = "0" + r
+        if (g.length === 1) g = "0" + g
+        if (b.length === 1) b = "0" + b
+
+        newColorType = {
           type: "hex",
-          value: [12, 34, 56],
+          value: [r, g, b],
         }
 
+        return newColorType
+
+      // is hex, return rgba
       case "hex":
-        return {
+        r = parseInt(colorType.value[0], 16)
+        g = parseInt(colorType.value[1], 16)
+        b = parseInt(colorType.value[2], 16)
+
+        newColorType = {
           type: "rgba",
-          value: [12, 34, 56, 1],
+          value: [r, g, b, 1],
         }
+
+        return newColorType
 
       default:
         return false
@@ -164,7 +184,7 @@ class ColorCoverter extends React.Component {
       })
     } else {
       this.setState({
-        errors: `No color value found :/`,
+        errors: `No color value found :(`,
       })
     }
   }

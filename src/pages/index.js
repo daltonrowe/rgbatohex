@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Link } from "gatsby"
 
 import Layout from "../layout/layout"
 import SEO from "../layout/seo"
@@ -14,7 +13,13 @@ const IndexPage = props => (
       <ColorConvertor />
 
       <footer>
-        <Link to={props.data.site.siteMetadata.github}>View on Github</Link>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={props.data.site.siteMetadata.github}
+        >
+          View on Github
+        </a>
       </footer>
     </article>
   </Layout>
