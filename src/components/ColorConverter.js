@@ -2,6 +2,12 @@ import React from "react"
 import ColorInput from "./ColorInput"
 import ColorOutput from "./ColorOutput"
 
+// https://github.com/misund/hex-to-rgba
+const rgbaRegex = /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/
+
+// https://stackoverflow.com/questions/11877554/validate-hexadecimal-string-using-regular-expression
+const hexRegex = /^(0x|0X)?[a-fA-F0-9]+$/
+
 class ColorCoverter extends React.Component {
   constructor(props) {
     super(props)
@@ -29,6 +35,18 @@ class ColorCoverter extends React.Component {
       type: "rgba",
       value: [18, 52, 85, 1],
     }
+
+    let tempString
+    tempString = string.split("(")
+    tempString = tempString[1].split(")")
+    tempString = tempString[0]
+    let tempArray = tempString.split(",")
+
+    for (let i = 0; i < tempArray.length; i++) {
+      const value = tempArray[i]
+      colorType[i] = value
+    }
+
     return colorType
   }
 
@@ -37,32 +55,51 @@ class ColorCoverter extends React.Component {
       type: "hex",
       value: ["12", "34", "56"],
     }
+
+    if (string.length === 3) {
+      string =
+        string[0] + string[0] + string[1] + string[1] + string[2] + string[2]
+    }
+
+    colorType[0] = string.slice(0, 2)
+    colorType[1] = string.slice(2, 4)
+    colorType[2] = string.slice(4, 6)
     return colorType
   }
 
   validateRgbaString = string => {
-    console.log(string)
-
-    const valid = true
+    let valid = rgbaRegex.test(string)
     return valid
   }
 
   validateHexString = string => {
-    const valid = true
+    let valid = hexRegex.test(string)
+
+    if (string.length <= 5) {
+      valid = false
+    }
+    if (string.length === 3) {
+      valid = true
+    }
+
     return valid
   }
 
   returnColorType = string => {
-    if (this.validateRgbaString(string)) {
-      return this.parseRgba(string)
-    } else if (this.validateHexString(string)) {
-      return this.parseHex(string)
+    let testString = string.split(" ").join("")
+    testString = testString.replace("#", "")
+
+    if (this.validateRgbaString(testString)) {
+      return this.parseRgba(testString)
+    } else if (this.validateHexString(testString)) {
+      return this.parseHex(testString)
     } else {
       return false
     }
   }
 
   checkColorType = colorType => {
+    // this could be ts
     if (!colorType || !("type" in colorType)) {
       return false
     }
@@ -116,7 +153,6 @@ class ColorCoverter extends React.Component {
   handleChange = events => {
     const inputValue = events.target.value
     const colorType = this.returnColorType(inputValue)
-    console.log(colorType)
 
     if (colorType) {
       this.setState({
