@@ -23,3 +23,6 @@ Issues and PRs welcome, it's a great first project.
 - More color support?
   - As a learning project all maths should be done in the source without libraries (or modules once implemented)
 - Study/Explain Regexs used in detail
+
+## Notes
+- https://www.netlify.com/docs/build-gotchas/#gatsby
