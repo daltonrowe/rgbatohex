@@ -9,7 +9,7 @@ import ColorConvertor from "../components/ColorConverter"
 const IndexPage = props => (
   <Layout>
     <SEO
-      title="Home"
+      title="RGBA to Hex Converter"
       description="Convert Hex to RGB, or RGBA to Hex. Open Source built with Gatsby"
       keywords={[`hex`, `rgba`, `convert`, `hex to rgba`, `rgba to hex`]}
     />
