@@ -40,7 +40,7 @@ module.exports = {
         head: false,
         sampleRate: 5,
         siteSpeedSampleRate: 10,
-        cookieDomain: "rgbatohex.com",
+        cookieDomain: "https://rgbatohex.com",
       },
     },
     `gatsby-plugin-offline`,
