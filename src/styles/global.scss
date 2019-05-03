@@ -18,7 +18,9 @@ body {
 
 div[role=group] {
    background-color:#efffff;
-   background-image:url('/public/pizza-bg-rebecca-humann.jpg');
+   background-image:url('../images/pizza-by-rebecca-humann-bg.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
    height:100vh;
    width:100vw;
    display: grid;
