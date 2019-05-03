@@ -9,18 +9,8 @@ import ColorConvertor from "../components/ColorConverter"
 const IndexPage = props => (
   <Layout>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <article>
+    <article id="rgba-to-hex" className="color-converter">
       <ColorConvertor />
-
-      <footer>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={props.data.site.siteMetadata.github}
-        >
-          View on Github
-        </a>
-      </footer>
     </article>
   </Layout>
 )
@@ -30,7 +20,6 @@ export const query = graphql`
     site {
       siteMetadata {
         title
-        github
       }
     }
   }

@@ -19,6 +19,7 @@ const Layout = ({ children }) => (
         site {
           siteMetadata {
             title
+            github
           }
         }
       }
@@ -28,6 +29,13 @@ const Layout = ({ children }) => (
         <Header siteTitle={data.site.siteMetadata.title} />
         <main>{children}</main>
         <footer>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={data.site.siteMetadata.github}
+          >
+            View on Github
+          </a>
           MIT {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>

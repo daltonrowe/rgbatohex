@@ -195,7 +195,7 @@ class ColorCoverter extends React.Component {
 
   render() {
     return (
-      <section className="color-converter">
+      <>
         <ColorInput
           initialValue={this.colorTypeToOutputString(
             this.state.initialInputColorType
@@ -212,7 +212,7 @@ class ColorCoverter extends React.Component {
           outputValue={this.colorTypeToOutputString(this.state.outputColorType)}
           errors={this.state.errors}
         />
-      </section>
+      </>
     )
   }
 }
