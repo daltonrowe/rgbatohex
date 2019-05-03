@@ -21,20 +21,28 @@ div[role=group] {
    background-image:url('../images/pizza-by-rebecca-humann-bg.jpg');
    background-repeat: no-repeat;
    background-size: cover;
-   height:100vh;
    width:100vw;
-   display: grid;
-   grid-template-columns: 1fr;
-   grid-template-rows: 10fr 80fr 10fr;
-   grid-template-areas: "top" "middle" "bottom";
-
+   height:auto;
+   
    & > header,
    & > main,
    & > footer {
-      display:flex;
-      padding:2em;
-      flex-direction: column;
       opacity:.1;
+   }
+   
+   @media (min-height:700px) {
+      height:100vh;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 10fr 80fr 10fr;
+      grid-template-areas: "top" "middle" "bottom";
+      
+      & > header,
+      & > main,
+      & > footer {
+         display:flex;
+         flex-direction: column;
+      }
    }
 }
 
@@ -66,15 +74,18 @@ span {
 }
 
 #rgba-to-hex {
-   position:absolute;
-   top:0;
-   left:0;
-   width:100%;
-   height:100%;
    grid-template-areas: "tl tr" "bl br";
+
+   @media (min-height:700px) {
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+   }
    
    @media (min-width:700px) {
       display: grid;
+      height:100%;
       grid-template-columns: 70% 30%;
       grid-template-rows: 50% 50%;
    }
@@ -83,9 +94,13 @@ span {
       grid-template-columns: 50% 50%;
    }
 
+   
    & > div {
-      display:flex;
-      align-items: center;
       padding:2em;
+      
+      @media (min-height:700px) {
+         display:flex;
+         align-items: center;
+      }
    }
 }

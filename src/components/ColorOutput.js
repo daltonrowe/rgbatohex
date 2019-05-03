@@ -14,7 +14,7 @@ const determineOutputOrError = (initialValue, outputValue, errors) => {
 const ColorOutput = ({ initialValue, outputValue, errors }) => (
   <div className="color-converter__output_wrapper">
     <input
-      readonly
+      readOnly
       className="color-converter__output"
       value={determineOutputOrError(initialValue, outputValue, errors)}
     />
