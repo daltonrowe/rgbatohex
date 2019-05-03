@@ -26,8 +26,8 @@ div[role=group] {
    & > main,
    & > footer {
       display:flex;
-      align-items: center;
       padding:2em;
+      flex-direction: column;
    }
 }
 
@@ -50,10 +50,15 @@ footer {
 a {
    color:#222;
    text-decoration: none;
+   cursor:pointer;
 
    &:hover {
       text-decoration: underline;
    }
+}
+
+span {
+   display:block;
 }
 
 #rgba-to-hex {
