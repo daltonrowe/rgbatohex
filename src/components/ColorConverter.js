@@ -1,6 +1,8 @@
 import React from "react"
 import ColorInput from "./ColorInput"
 import ColorOutput from "./ColorOutput"
+import ColorSuggestions from "./ColorSuggestions"
+import ColorOptions from "./ColorOptions"
 
 import "../styles/components/ColorConverter.scss"
 
@@ -212,6 +214,9 @@ class ColorCoverter extends React.Component {
           outputValue={this.colorTypeToOutputString(this.state.outputColorType)}
           errors={this.state.errors}
         />
+
+        <ColorSuggestions />
+        <ColorOptions />
       </>
     )
   }

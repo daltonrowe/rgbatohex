@@ -3,7 +3,7 @@
 # Hex to RGB Converter
 
 Gatsby based React site that converts colors. This thing could totally be better.
-Issues and PRs welcome, a great first project.
+Issues and PRs welcome, it's a great first project.
 
 ## Future Improvements, PRs welcome
 - Mix RGBA with background color!

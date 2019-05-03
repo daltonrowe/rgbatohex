@@ -1,8 +1,8 @@
 import React from "react"
-import "../styles/components/ColorInputOutput.scss"
+import "../styles/components/ColorOptions.scss"
 
 const ColorSuggestions = ({ props }) => (
-  <div className="color-converter__input_wrapper" />
+  <div className="color-converter__options" />
 )
 
 export default ColorSuggestions

@@ -8,7 +8,11 @@ import ColorConvertor from "../components/ColorConverter"
 
 const IndexPage = props => (
   <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+    <SEO
+      title="Home"
+      description="Convert Hex to RGB, or RGBA to Hex. Open Source built with Gatsby"
+      keywords={[`hex`, `rgba`, `convert`, `hex to rgba`, `rgba to hex`]}
+    />
     <article id="rgba-to-hex" className="color-converter">
       <ColorConvertor />
     </article>
