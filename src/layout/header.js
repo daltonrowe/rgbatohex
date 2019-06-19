@@ -6,11 +6,9 @@ const Header = ({ siteTitle, github }) => (
   <header>
     <h1>
       {/* <Link to="/">{siteTitle}</Link> */}
-      <Link to="/">Coming Soon: RGBA to Hex Converter</Link>
+      <Link to="/">RGBA to Hex Converter</Link>
     </h1>
-    <span className="description">
-      Also as Hex to RGBA converter! Coming soon.
-    </span>
+    <span className="description">Also as Hex to RGBA converter!</span>
   </header>
 )
 
