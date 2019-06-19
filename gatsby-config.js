@@ -33,16 +33,16 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: process.env.GA_TRACKING_ID,
-        head: false,
-        sampleRate: 5,
-        siteSpeedSampleRate: 10,
-        cookieDomain: "https://rgbatohex.com",
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-google-analytics`,
+    //   options: {
+    //     trackingId: process.env.GA_TRACKING_ID,
+    //     head: false,
+    //     sampleRate: 5,
+    //     siteSpeedSampleRate: 10,
+    //     cookieDomain: "https://rgbatohex.com",
+    //   },
+    // },
     `gatsby-plugin-offline`,
   ],
 }
