@@ -43,6 +43,20 @@ module.exports = {
     //     cookieDomain: "https://rgbatohex.com",
     //   },
     // },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.GA_TRACKING_ID,
+        head: false,
+        anonymize: true,
+        respectDNT: true,
+        exclude: ["/dont-track/"],
+        variationId: "0",
+        sampleRate: 5,
+        siteSpeedSampleRate: 10,
+        cookieDomain: "example.com",
+      },
+    },
     `gatsby-plugin-offline`,
   ],
 }
